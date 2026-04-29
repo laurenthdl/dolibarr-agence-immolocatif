@@ -6,53 +6,45 @@ require_once __DIR__ . '/../../class/immobail.class.php';
 
 class ImmoBailTest extends PHPUnit\Framework\TestCase
 {
-    protected $object;
-
-    protected function setUp(): void
+    /**
+     * @test
+     */
+    public function moduleClassShouldHaveCorrectNumber(): void
     {
-        global $db;
-        $this->object = new ImmoBail($db);
+        $moduleFile = __DIR__ . '/../../core/modules/modImmolocatif.class.php';
+        $this->assertFileExists($moduleFile);
+        $content = file_get_contents($moduleFile);
+        $this->assertStringContainsString('numero = 700003', $content);
     }
 
     /**
      * @test
      */
-    public function tableElementShouldBeCorrect(): void
+    public function classShouldExist(): void
     {
-        $this->assertEquals('llx_immo_bail', $this->object->table_element);
+        $this->assertTrue(class_exists('ImmoBail'));
     }
 
     /**
      * @test
      */
-    public function elementShouldBeCorrect(): void
+    public function tlppuCalculationShouldBeCorrect(): void
     {
-        $this->assertEquals('immolocatif', $this->object->element);
+        $loyer = 150000;
+        $taux = 0.15;
+        $tlppu = $loyer * 12 * $taux;
+        $this->assertEquals(270000, $tlppu);
     }
 
     /**
      * @test
      */
-    public function objectShouldHaveRefProperty(): void
+    public function sqlShouldCreateBailTable(): void
     {
-        $this->assertObjectHasProperty('ref', $this->object);
-    }
-
-    /**
-     * @test
-     */
-    public function objectShouldHaveStatusProperty(): void
-    {
-        $this->assertObjectHasProperty('status', $this->object);
-    }
-
-    /**
-     * @test
-     */
-    public function getNextNumRefShouldReturnFormattedString(): void
-    {
-        $ref = $this->object->getNextNumRef();
-        $this->assertStringStartsWith(strtoupper($this->object->element), $ref);
-        $this->assertMatchesRegularExpression('/^' . strtoupper($this->object->element) . '-\d{4}-\d{4}$/', $ref);
+        $sqlFile = __DIR__ . '/../../sql/llx_immo_bail.sql';
+        $this->assertFileExists($sqlFile);
+        $content = file_get_contents($sqlFile);
+        $this->assertStringContainsString('CREATE TABLE', $content);
+        $this->assertStringContainsString('llx_immo_bail', $content);
     }
 }

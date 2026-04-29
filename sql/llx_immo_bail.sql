@@ -1,5 +1,5 @@
 -- Table immo_bail
-CREATE TABLE IF NOT EXISTS {db_prefix}immo_bail (
+CREATE TABLE IF NOT EXISTS llx_immo_bail (
     rowid SERIAL PRIMARY KEY,
     ref VARCHAR(128) NOT NULL,
     fk_user_creat INTEGER NOT NULL,
@@ -9,8 +9,8 @@ CREATE TABLE IF NOT EXISTS {db_prefix}immo_bail (
 ) TABLESPACE pg_default;
 
 -- Indexes
-CREATE INDEX IF NOT EXISTS idx_immo_bail_ref ON {db_prefix}immo_bail(ref);
-CREATE INDEX IF NOT EXISTS idx_immo_bail_status ON {db_prefix}immo_bail(status);
+CREATE INDEX IF NOT EXISTS idx_immo_bail_ref ON llx_immo_bail(ref);
+CREATE INDEX IF NOT EXISTS idx_immo_bail_status ON llx_immo_bail(status);
 
 -- Trigger for tms
 CREATE OR REPLACE FUNCTION update_tms_column()
@@ -21,8 +21,8 @@ BEGIN
 END;
 $$ language 'plpgsql';
 
-DROP TRIGGER IF EXISTS trg_immo_bail_tms ON {db_prefix}immo_bail;
+DROP TRIGGER IF EXISTS trg_immo_bail_tms ON llx_immo_bail;
 CREATE TRIGGER trg_immo_bail_tms
-    BEFORE UPDATE ON {db_prefix}immo_bail
+    BEFORE UPDATE ON llx_immo_bail
     FOR EACH ROW
     EXECUTE FUNCTION update_tms_column();
