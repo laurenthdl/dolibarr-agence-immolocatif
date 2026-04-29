@@ -1,0 +1,13 @@
+# Dolibarr language file — immolocatif
+ModulemodImmolocatifName = Immobilier - Location
+ModulemodImmolocatifDesc = Gestion locative et quittances
+Immobilier = Immobilier
+Biens = Biens
+Clients = Clients
+Location = Location
+Vente = Vente
+Rénovation = Rénovation
+Syndic = Syndic
+ÉtudeDeMarché = Étude de marché
+Paiements = Paiements
+Rapports = Rapports
