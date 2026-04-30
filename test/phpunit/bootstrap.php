@@ -1,9 +1,7 @@
 <?php
 declare(strict_types=1);
+// Bootstrap pour PHPUnit - environnement Dolibarr simule
 
-/** Bootstrap pour PHPUnit sans Dolibarr complet */
-
-// Simuler les constantes Dolibarr minimales
 if (!defined('DOL_DOCUMENT_ROOT')) {
     define('DOL_DOCUMENT_ROOT', dirname(__DIR__, 4));
 }
@@ -50,7 +48,6 @@ if (!class_exists('CommonObject')) {
         public $db;
         public $table_element;
         public $element;
-        public $rowid;
         public $ref = '';
         public $fk_user_creat;
         public $datec = '';
@@ -59,10 +56,10 @@ if (!class_exists('CommonObject')) {
 
         protected $fields = [];
 
-        public function createCommon(User $user, bool $notrigger = false) { return 1; }
-        public function fetchCommon($id, $ref = '') { return 1; }
-        public function updateCommon(User $user, bool $notrigger = false) { return 1; }
-        public function deleteCommon(User $user, bool $notrigger = false) { return 1; }
+        protected function createCommon(User $user, $notrigger = false) { return 1; }
+        protected function fetchCommon($id, $ref = '') { return 1; }
+        protected function updateCommon(User $user, $notrigger = false) { return 1; }
+        protected function deleteCommon(User $user, $notrigger = false) { return 1; }
     }
 }
 

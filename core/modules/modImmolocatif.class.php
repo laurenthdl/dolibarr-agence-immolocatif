@@ -3,18 +3,12 @@
 declare(strict_types=1);
 
 require_once DOL_DOCUMENT_ROOT . '/core/modules/DolibarrModules.class.php';
-require_once DOL_DOCUMENT_ROOT . '/custom/immocore/core/modules/modimmocore.class.php';
-        
-require_once DOL_DOCUMENT_ROOT . '/custom/immobien/core/modules/modimmobien.class.php';
-        
-require_once DOL_DOCUMENT_ROOT . '/custom/immoclient/core/modules/modimmoclient.class.php';
 
 class modImmolocatif extends DolibarrModules
 {
     public function __construct($db)
     {
         global $langs, $conf;
-
         $this->db = $db;
         $this->numero = 700003;
         $this->rights_class = 'immolocatif';
@@ -27,11 +21,11 @@ class modImmolocatif extends DolibarrModules
         $this->picto = 'company';
         $this->module_parts = array();
         $this->dirs = array();
-        $this->config_page_url = array("immolocatif@immobilier");
+        $this->config_page_url = array("");
         $this->depends = array('mod_immocore' => 1, 'mod_immobien' => 1, 'mod_immoclient' => 1, 'mod_societe' => 1);
         $this->requiredby = array();
         $this->conflictwith = array();
-        $this->langfiles = array("immolocatif@immobilier");
+        $this->langfiles = array("immolocatif");
         $this->phpmin = array(8, 1);
         $this->need_dolibarr_version = array(23, 0);
         $this->warnings_activation = array();
@@ -45,13 +39,13 @@ class modImmolocatif extends DolibarrModules
         $r = 0;
         $this->menu[$r] = array(
             'fk_menu' => 'fk_mainmenu=immobilier',
-            'type' => 'top',
-            'titre' => 'Immobilier - Location',
+            'type' => 'left',
+            'titre' => 'Location',
             'mainmenu' => 'immobilier',
             'leftmenu' => 'immolocatif',
             'url' => '/custom/immolocatif/index.php',
-            'langs' => 'immolocatif@immobilier',
-            'position' => 700003,
+            'langs' => 'immolocatif',
+            'position' => 700006,
             'perms' => '1',
             'target' => '',
             'user' => 2,
@@ -62,23 +56,24 @@ class modImmolocatif extends DolibarrModules
         $this->rights_class = 'immolocatif';
         $r = 0;
         $this->rights[$r][0] = 700003001;
-        $this->rights[$r][1] = 'Lire les Immobilier - Location';
+        $this->rights[$r][1] = 'Lire les baux locatifs';
         $this->rights[$r][3] = 0;
         $this->rights[$r][4] = 'read';
         $r++;
         $this->rights[$r][0] = 700003002;
-        $this->rights[$r][1] = 'Créer/Modifier les Immobilier - Location';
+        $this->rights[$r][1] = 'Créer/Modifier les baux locatifs';
         $this->rights[$r][3] = 0;
         $this->rights[$r][4] = 'write';
         $r++;
         $this->rights[$r][0] = 700003003;
-        $this->rights[$r][1] = 'Supprimer les Immobilier - Location';
+        $this->rights[$r][1] = 'Supprimer les baux locatifs';
         $this->rights[$r][3] = 0;
         $this->rights[$r][4] = 'delete';
     }
 
     public function init($options = ''): int
     {
+        $sql = array();
         return $this->_init($sql, $options);
     }
 
