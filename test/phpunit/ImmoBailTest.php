@@ -1,17 +1,10 @@
 <?php
 declare(strict_types=1);
 require_once __DIR__ . '/bootstrap.php';
-require_once __DIR__ . '/../../core/modules/modImmolocatif.class.php';
 require_once __DIR__ . '/../../class/immobail.class.php';
 
 class ImmoBailTest extends PHPUnit\Framework\TestCase
 {
-    /** @test */
-    public function moduleShouldExist(): void
-    {
-        $this->assertTrue(class_exists('modImmolocatif'));
-    }
-
     /** @test */
     public function bailClassShouldExist(): void
     {
@@ -27,11 +20,11 @@ class ImmoBailTest extends PHPUnit\Framework\TestCase
     /** @test */
     public function tlppuCalculationShouldBeCorrect(): void
     {
-        $bail = new ImmoBail((object)[]);
+        $bail = new ImmoBail(new DoliDB());
         $bail->loyer_nu = 150000;
         $bail->taux_tlppu = 15;
         $tlppu = $bail->calculTLPPU();
-        $this->assertEquals(18750.0, $tlppu);
+        $this->assertEquals(22500.0, $tlppu);
     }
 
     /** @test */

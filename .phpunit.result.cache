@@ -1,0 +1,1 @@
+{"version":2,"defects":{"ImmoBailTest::tlppuCalculationShouldBeCorrect":7},"times":{"ImmoBailTest::bailClassShouldExist":0.002,"ImmoBailTest::quittanceClassShouldExist":0,"ImmoBailTest::tlppuCalculationShouldBeCorrect":0.006,"ImmoBailTest::sqlShouldCreateBailTable":0,"ImmoBailTest::uiFilesShouldExist":0}}

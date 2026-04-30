@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require_once DOL_DOCUMENT_ROOT . '/core/class/commonobject.class.php';
+if (!class_exists('CommonObject')) { require_once DOL_DOCUMENT_ROOT . '/core/class/commonobject.class.php'; }
 
 class ImmoBail extends CommonObject
 {
