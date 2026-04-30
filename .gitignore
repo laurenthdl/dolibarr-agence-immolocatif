@@ -1,22 +1,6 @@
-# Build artifacts
-/build/
-/vendor/
-/composer.lock
-
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Test coverage
-/coverage/
-*.cov
-
-# Dolibarr specific
-*.lock
-/documents/
+vendor/
+.phpunit.cache/
+composer.lock
+node_modules/
+*.log
+.env
